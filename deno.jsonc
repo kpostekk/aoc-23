@@ -1,0 +1,8 @@
+{
+  "fmt": {
+    "semiColons": false,
+  },
+  "imports": {
+    "std/": "https://deno.land/std/"
+  }
+}
