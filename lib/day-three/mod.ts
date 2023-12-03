@@ -141,9 +141,20 @@ const sum = surroundings
 
 console.log({ sum, surroundings })
 
+Deno.bench("Part 1", () => {
+  Array.from(engine.findFrames())
+    .map(([n, f]) => [n, engine.searchSurroundings(f)] as const)
+    .filter(([, value]) => value?.value !== undefined).map(([n]) => Number(n))
+    .reduce((pv, cv) => pv + cv, 0)
+})
+
 // Part 2
 const ratios = Array.from(engine.searchRatios())
 
 const ratioSum = ratios.reduce((pv, cv) => pv + cv.ratio, 0)
 
 console.log({ ratioSum, ratios })
+
+Deno.bench("Part 2", () => {
+  Array.from(engine.searchRatios()).reduce((pv, cv) => pv + cv.ratio, 0)
+})
